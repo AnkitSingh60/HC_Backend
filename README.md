@@ -9,7 +9,7 @@
 - <img src="https://user-images.githubusercontent.com/93372584/188834579-8a4ff6b8-8a97-4bb7-b44d-a3c8d2c303d1.png" style="width: 100%; max-width: 100%; height: auto"
   title="Click to enlarge picture" />
   
-- `All Comments with post _id`
+- `All Comments with user _id`
 - <img src="https://user-images.githubusercontent.com/93372584/188834615-cf4d639a-8eb2-4d8f-97a1-c666cd9e5b14.png" style="width: 100%; max-width: 100%; height: auto"
   title="Click to enlarge picture" />
   
