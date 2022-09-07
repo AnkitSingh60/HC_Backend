@@ -74,7 +74,7 @@ app.get('/posts', async (req, res) => {
 })
 app.get('/comments', async (req, res) => {
     try {
-        const comment = await Comment.find()
+        const comment = await Comment.find().populate("user_id")
         if (comment) {
             return res.status(200).send(comment);
         } else {
