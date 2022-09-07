@@ -20,7 +20,19 @@ const postSchema = new mongoose.Schema({
     }
 )
 
-const Post = mongoose.model("Post", postSchema);
+const Post = mongoose.model("post", postSchema);
+
+const commentSchema = new mongoose.Schema({
+    comment: { type: String, require: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "post", required: true }
+},
+    {
+        versionKey: false, // removed __v
+        timestamps: true, // createdAt, updatedAt
+    }
+)
+
+const Comment = mongoose.model("comment", commentSchema);
 
 async function getPost() {
     try {
@@ -48,9 +60,44 @@ app.get('/', async (req, res) => {
 
 
 app.get('/posts', async (req, res) => {
-    const allPosts = await Post.find()
-    res.status(200).send(allPosts)
+    try {
+        const allPosts = await Post.find()
+        if (allPosts) {
+            return res.status(200).send(allPosts);
+        } else {
+            return res.status(404).send({ message: 'No post found...' });
+        }
+    } catch (error) {
+        console.log('error:', error.message);
+
+    }
 })
+app.get('/comments', async (req, res) => {
+    try {
+        const comment = await Comment.find()
+        if (comment) {
+            return res.status(200).send(comment);
+        } else {
+            return res.status(404).send({ message: 'No comment found...' });
+        }
+    } catch (error) {
+        console.log('error:', error.message);
+
+    }
+})
+
+app.post('/comments', async (req, res) => {
+    try {
+        const comment = await Comment.create(req.body);
+        return res.status(200).send(comment);
+    } catch (error) {
+        console.log('error:', error.message);
+    }
+})
+
+
+
+
 
 app.listen(PORT, async function () {
     try {
