@@ -13,7 +13,12 @@ const postSchema = new mongoose.Schema({
     id: { type: Number, require: true },
     title: { type: String, require: true },
     body: { type: String, require: true },
-})
+},
+    {
+        versionKey: false, // removed __v
+        timestamps: true, // createdAt, updatedAt
+    }
+)
 
 const Post = mongoose.model("Post", postSchema);
 
